@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 10
+EPOCHS = 100
 MODEL_NAME = 'VGG_16'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
@@ -305,7 +305,7 @@ tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 
 history = model.fit(train_gen,
                     steps_per_epoch=len(train_idx)//batch_size,
-                    epochs=5,
+                    epochs=EPOCHS,
                     callbacks=[tensorboard_callback,callbacks],
                     validation_data=valid_gen,
                     validation_steps=len(test_idx)//valid_batch_size)
@@ -323,8 +323,7 @@ model.save('CXR_Covid-19_{}e_{}_{}_{}.h5'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUT
 
 
 from tensorflow import keras
-model = keras.models.load_model('CXR_Covid-19_{}e_{}_{}_{}.h5'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS))
-
+model = keras.models.load_model('CXR_Covid-19_{}e_{}_{}_{}.h5'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), custom_objects={'specificity': specificity, 'sensitivity': sensitivity})
 
 
 from tensorflow.keras.utils import to_categorical
