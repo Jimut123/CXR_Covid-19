@@ -1,0 +1,8 @@
+*.h5
+*.zip
+logs
+model_checkpoint
+train
+validation
+
+
