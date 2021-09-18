@@ -13,5 +13,5 @@ MobileNetV2: done
 NASNetLarge: done
 InceptionResNetV2: gpu3
 ResNet152V2: gpu1
-EfficientNetB7: gpu2
+EfficientNetB7: gpu2 (with base)
 ```
