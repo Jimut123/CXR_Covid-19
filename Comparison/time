@@ -1,2 +1,4 @@
 NasNetLarge = 1443
-VGG16 = 
+VGG16 =
+
+MobileNetV2 = 224 
