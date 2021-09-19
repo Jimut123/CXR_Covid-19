@@ -74,8 +74,8 @@ def cm_analysis(y_true, y_pred, labels, ymap=None, figsize=(10,10)):
     fig, ax = plt.subplots(figsize=figsize)
     sns.heatmap(cm, annot=annot, fmt='', ax=ax, cmap='rocket_r')
     #plt.savefig(filename)
-    plt.savefig('confusion_matrix_CXR_Covid-19_{}e_{}_{}_{}.png'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS))
-    plt.savefig('confusion_matrix_CXR_Covid-19_{}e_{}_{}_{}.eps'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS))
+    plt.savefig('confusion_matrix_CXR_Covid-19_{}e_{}_{}_{}.png'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS),bbox_inches='tight',pad_inches=0, dpi=200)
+    plt.savefig('confusion_matrix_CXR_Covid-19_{}e_{}_{}_{}.eps'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS),bbox_inches='tight',pad_inches=0, dpi=200)
     plt.show()
 
 cm_analysis(y_test_list, y_pred_list, [i for i in rev_index] , ymap=None, figsize=(10,10))
