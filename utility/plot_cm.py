@@ -5,8 +5,8 @@ OUTPUT_LAYERS = '128-32-3'
 
 
 
-index = {'covid': 0, 'pneumonia': 1, 'normal': 2}
-rev_index = {0: 'covid', 1: 'pneumonia', 2: 'normal'}
+index = {'COVID-19': 0, 'Pneumonia': 1, 'Normal': 2}
+rev_index = {0: 'COVID-19', 1: 'Pneumonia', 2: 'Normal'}
 
 import pickle
 
@@ -28,7 +28,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import confusion_matrix
-plt.rcParams.update({'font.size': 22})
+plt.rcParams['font.family'] = "Times New Roman"
+plt.rcParams.update({'font.size': 18})
 
 
 def cm_analysis(y_true, y_pred, labels, ymap=None, figsize=(10,10)):
