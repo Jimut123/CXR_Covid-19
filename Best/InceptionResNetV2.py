@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 1
+EPOCHS = 50
 MODEL_NAME = 'InceptionResNetV2'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
@@ -305,12 +305,13 @@ tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 history = model.fit(train_gen,
                     steps_per_epoch=len(train_idx)//batch_size,
                     epochs=EPOCHS,
-                    callbacks=[tensorboard_callback,callbacks],
+                    callbacks=[tensorboard_callback,callbacks])
                     # validation_data=valid_gen,
                     # validation_steps=len(test_idx)//valid_batch_size)
 
 
 import pandas as pd
+
 hist_df = pd.DataFrame(history.history) 
 hist_json_file = 'history_CXR_Covid-19_{}e_{}_{}_{}.json'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS)
 with open(hist_json_file, mode='w') as f:
