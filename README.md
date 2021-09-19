@@ -26,3 +26,8 @@ InceptionResNetV2: done
 ResNet152V2: done
 EfficientNetB7: gpu2 (with base)
 ```
+
+Best: 50 epoch with whole data - Training
+```
+InceptionResNetV2: gpu-3
+```
