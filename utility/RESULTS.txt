@@ -21,3 +21,9 @@ VGG 16
 Accuracy =  0.9685314685314684  Sensitivity =  0.9475083798882681  Specificity =  0.9773519736842106 
   F1 =  2.0  Precision =  0.9480350861013895
 
+
+ResNet152V2
+
+Accuracy =  0.966977466977467  Sensitivity =  0.9451433891992552  Specificity =  0.9761370614035089 
+  F1 =  2.0  Precision =  0.9453342705985869
+

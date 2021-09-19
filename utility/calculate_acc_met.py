@@ -3,9 +3,9 @@ import pickle
 from sklearn.metrics import confusion_matrix
 
 
-with open('y_pred_list_100e_VGG_16_360x360_128-32-3.pkl','rb') as f:
+with open('y_pred_list_50e_ResNet152V2_360x360_128-32-3.pkl','rb') as f:
     y_pred = pickle.load(f)
-with open('y_test_list_100e_VGG_16_360x360_128-32-3.pkl', 'rb') as f:
+with open('y_test_list_50e_ResNet152V2_360x360_128-32-3.pkl', 'rb') as f:
     y_true = pickle.load(f)
 
 
