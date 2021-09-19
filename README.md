@@ -11,7 +11,7 @@ Comparison: 50 epochs
 ```
 MobileNetV2: done
 NASNetLarge: done
-InceptionResNetV2: gpu3
-ResNet152V2: gpu1
+InceptionResNetV2: done
+ResNet152V2: gpu3
 EfficientNetB7: gpu2 (with base)
 ```

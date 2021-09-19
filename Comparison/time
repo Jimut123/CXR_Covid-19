@@ -3,3 +3,5 @@ NasNetLarge = 1443
 VGG16 =
 InceptionResNetV2 = 438
 MobileNetV2 = 224 
+ResNet152V2 = 590
+EfficientNetB7 = 1787
