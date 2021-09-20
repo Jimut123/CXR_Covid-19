@@ -24,10 +24,11 @@ MobileNetV2: done
 NASNetLarge: done
 InceptionResNetV2: done
 ResNet152V2: done
+Xception: gpu3 
 EfficientNetB7: gpu2 (with base)
 ```
 
 Best: 50 epoch with whole data - Training
 ```
-InceptionResNetV2: gpu-3
+InceptionResNetV2: done
 ```
