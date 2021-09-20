@@ -25,8 +25,8 @@ NASNetLarge: done
 InceptionResNetV2: done
 ResNet152V2: done
 Xception: done
-DenseNet201: gpu3
-InceptionV3: gpu2
+DenseNet201: done
+InceptionV3: gpu3
 EfficientNetB7: done in gpu2
 ```
 
