@@ -289,8 +289,8 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow import keras
 # batch_size = 100
 # valid_batch_size = 32
-batch_size = 4
-valid_batch_size = 4
+batch_size = 32
+valid_batch_size = 32
 train_gen = get_data_generator(df_train, train_idx, for_training=True, batch_size=batch_size)
 valid_gen = get_data_generator(df_val, test_idx, for_training=True, batch_size=valid_batch_size)
 
