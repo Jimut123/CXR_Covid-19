@@ -27,11 +27,12 @@ ResNet152V2: done
 Xception: done
 DenseNet201: done
 InceptionV3: done
-EfficientNetB1: gpu3
+EfficientNetB1: done
 EfficientNetB7: done in gpu2
 ```
 
 Best: 50 epoch with whole data - Training
 ```
 InceptionResNetV2: done
+InceptionV3: gpu3
 ```
