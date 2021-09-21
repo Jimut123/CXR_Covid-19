@@ -27,3 +27,39 @@ ResNet152V2
 Accuracy =  0.966977466977467  Sensitivity =  0.9451433891992552  Specificity =  0.9761370614035089 
   F1 =  2.0  Precision =  0.9453342705985869
 
+
+Xception
+
+ Accuracy =  0.9716394716394716  Sensitivity =  0.9534450651769086  Specificity =  0.9799890350877192 
+  F1 =  2.0  Precision =  0.9529342965256277
+
+
+DenseNet201
+
+Accuracy =  0.9687257187257187  Sensitivity =  0.9479422718808194  Specificity =  0.977577850877193 
+  F1 =  2.0  Precision =  0.951681314190694
+
+
+InceptionV3
+
+Accuracy =  0.9757187257187258  Sensitivity =  0.9598417132216014  Specificity =  0.9827489035087719 
+  F1 =  2.0  Precision =  0.9597939284653871
+
+
+
+EfficientNetB1
+
+Accuracy =  0.8197358197358198  Sensitivity =  0.6925772811918063  Specificity =  0.8539484649122806 
+  F1 =  2.0  Precision =  0.782742678456219
+
+
+
+EfficientNetB7
+
+ Accuracy =  0.9364801864801865  Sensitivity =  0.8916033519553072  Specificity =  0.9501776315789474 
+  F1 =  2.0  Precision =  0.9073020441239629
+  
+  
+
+
+
