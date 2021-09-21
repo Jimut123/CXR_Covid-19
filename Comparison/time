@@ -1,6 +1,6 @@
 Time per epoch in (sec)
 NasNetLarge = 1443
-VGG16 =
+VGG16 = 303
 InceptionResNetV2 = 438
 MobileNetV2 = 224 
 ResNet152V2 = 590
