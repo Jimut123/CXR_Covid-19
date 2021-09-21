@@ -1,2 +1,3 @@
 In sec
 InceptionResNetV2 = 480 
+InceptionV3 = 221
