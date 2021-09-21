@@ -3,8 +3,8 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 1
-MODEL_NAME = 'EfficientNetB7'
+EPOCHS = 50
+MODEL_NAME = 'EfficientNetB1'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
 ###########################
