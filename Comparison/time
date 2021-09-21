@@ -7,4 +7,4 @@ ResNet152V2 = 590
 EfficientNetB7 = 1787
 Xception = 489
 DenseNet201 = 366
-InceptionV3 = 
+InceptionV3 = 218
