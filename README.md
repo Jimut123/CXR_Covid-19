@@ -19,6 +19,8 @@ scp  sysadm@gpuserver3:~/sb/CXR_Covid-19/Comparison/CXR_Covid-19_50e_InceptionRe
 ablation 100 epoch 
 ```
 VGG_16 : gpu 3
+Run for 100 epoch Validation Inception V3
+Run for 100 epoch Full Inception V3
 ```
 
 Comparison: 50 epochs
