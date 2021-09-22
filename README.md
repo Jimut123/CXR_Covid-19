@@ -16,6 +16,13 @@ To copy from gpuserver3 to border machine, go to border machine and run this com
 scp  sysadm@gpuserver3:~/sb/CXR_Covid-19/Comparison/CXR_Covid-19_50e_InceptionResNetV2_360x360_128-32-3.h5 /home/sysadm/
 ```
 
+ablation 100 epoch 
+```
+VGG_16 : gpu 3
+Run for 100 epoch Validation Inception V3
+Run for 100 epoch Full Inception V3
+```
+
 Comparison: 50 epochs
 
 ```
