@@ -29,5 +29,8 @@ Accuracy =  0.9696969696969697  Sensitivity =  0.9499106145251397  Specificity =
   F1 =  2.0  Precision =  0.9496830740833441
 
 
+y_test_list_100e_VGG_16_all_500x500_1024_dropout-1024-3
 
+Accuracy =  0.9696969696969697  Sensitivity =  0.9491061452513967  Specificity =  0.9782039473684211 
+  F1 =  2.0  Precision =  0.949836235778322
 
