@@ -4,7 +4,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 1
+EPOCHS = 100
 MODEL_NAME = 'VGG_16_all'
 IMG_SIZE = '500x500'
 OUTPUT_LAYERS = '1024_dropout-1024-3'
@@ -290,8 +290,8 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow import keras
 # batch_size = 100
 # valid_batch_size = 32
-batch_size = 32
-valid_batch_size = 32
+batch_size = 16
+valid_batch_size = 16
 train_gen = get_data_generator(df_train, train_idx, for_training=True, batch_size=batch_size)
 valid_gen = get_data_generator(df_val, test_idx, for_training=True, batch_size=valid_batch_size)
 
