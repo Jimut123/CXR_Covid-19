@@ -3,10 +3,10 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 50
+EPOCHS = 1
 MODEL_NAME = 'InceptionV3'
-IMG_SIZE = '360x360'
-OUTPUT_LAYERS = '128-32-3'
+IMG_SIZE = '500x500'
+OUTPUT_LAYERS = '1024-1024-3'
 ###########################
 
 all_covid_files = glob.glob('/content/train/covid/*')
@@ -117,7 +117,7 @@ def parse_filepath(filepath):
 
 np.random.seed(42)
 
-H, W, C = 360, 360, 3
+H, W, C = 500, 500, 3
 N_LABELS = len(index)
 D = 1
 
@@ -140,7 +140,7 @@ train_idx = p[:len(df_train)]
 
 
 ##################################
-H, W, C = 360, 360, 3
+H, W, C = 500, 500, 3
 N_LABELS = len(index)
 D = 1
 ##################################
@@ -176,14 +176,14 @@ from keras.layers import Dense, Flatten, GlobalAveragePooling2D
 
 # Change the pretrained model name according to the given criteria
 
-frozen = InceptionV3 (weights="imagenet", input_shape=(360,360,3), include_top=False)
+frozen = InceptionV3 (weights="imagenet", input_shape=(500, 500,3), include_top=False)
 frozen.summary()
 
 trainable = frozen.output
 trainable = GlobalAveragePooling2D()(trainable)
 #print(trainable.shape)
-trainable = Dense(128, activation="relu")(trainable)
-trainable = Dense(32, activation="relu")(trainable)
+trainable = Dense(1024, activation="relu")(trainable)
+trainable = Dense(1024, activation="relu")(trainable)
 trainable = Dense(N_LABELS, activation="softmax")(trainable)
 model = Model(inputs=frozen.input, outputs=trainable)
 model.summary()
@@ -248,8 +248,8 @@ def get_data_generator(df, indices, for_training, batch_size=16):
             # print("file, label = ",file, label)
             im_gray = Image.open(file).convert('L')
             # print("Shape = ",im_gray.shape)
-            im_gray = im_gray.resize((360,360))
-            im = np.zeros(shape=(360,360,3))
+            im_gray = im_gray.resize((500, 500))
+            im = np.zeros(shape=(500, 500,3))
             
             im[:,:,0] = im_gray
             im[:,:,1] = im_gray
@@ -338,8 +338,8 @@ for i in tqdm(test_idx):
 
     im_gray = Image.open(file_).convert('L')
     # print("Shape = ",im_gray.shape)
-    im_gray = im_gray.resize((360,360))
-    im = np.zeros(shape=(360,360,3))
+    im_gray = im_gray.resize((500, 500))
+    im = np.zeros(shape=(500, 500,3))
 
     im[:,:,0] = im_gray
     im[:,:,1] = im_gray
@@ -348,7 +348,7 @@ for i in tqdm(test_idx):
 
 
     # im = Image.open(file_)
-    # im = im.resize((360, 360))
+    # im = im.resize((500, 500))
     # im = np.array(im) / 255.0
     # print(im[np.newaxis, ...].shape)
     y_pred = model.predict(im[np.newaxis, ...])
