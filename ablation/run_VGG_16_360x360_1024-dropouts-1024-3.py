@@ -4,8 +4,8 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 100
-MODEL_NAME = 'VGG_16_all'
+EPOCHS = 1
+MODEL_NAME = 'VGG_16'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '1024_dropout-1024-3'
 ###########################
@@ -249,8 +249,8 @@ def get_data_generator(df, indices, for_training, batch_size=16):
             # print("file, label = ",file, label)
             im_gray = Image.open(file).convert('L')
             # print("Shape = ",im_gray.shape)
-            im_gray = im_gray.resize((500, 500))
-            im = np.zeros(shape=(500, 500,3))
+            im_gray = im_gray.resize((360, 360))
+            im = np.zeros(shape=(360, 360,3))
             
             im[:,:,0] = im_gray
             im[:,:,1] = im_gray
@@ -339,8 +339,8 @@ for i in tqdm(test_idx):
 
     im_gray = Image.open(file_).convert('L')
     # print("Shape = ",im_gray.shape)
-    im_gray = im_gray.resize((500, 500))
-    im = np.zeros(shape=(500, 500,3))
+    im_gray = im_gray.resize((360, 360))
+    im = np.zeros(shape=(360, 360,3))
 
     im[:,:,0] = im_gray
     im[:,:,1] = im_gray
@@ -349,7 +349,7 @@ for i in tqdm(test_idx):
 
 
     # im = Image.open(file_)
-    # im = im.resize((500, 500))
+    # im = im.resize((360, 360))
     # im = np.array(im) / 255.0
     # print(im[np.newaxis, ...].shape)
     y_pred = model.predict(im[np.newaxis, ...])
