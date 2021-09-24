@@ -1,0 +1,76 @@
+When using VGG 16
+index = {'normal': 0, 'covid': 1,  'pneumonia': 2}
+rev_index = {0: 'normal',1: 'covid', 2: 'pneumonia'}
+
+===========================================================================
+
+pneu_920.png
+
+Actual label =  pneumonia
+Histogram value =  [[5.6466294e-25 2.5165232e-15 1.0000000e+00]]
+Predicted label =  pneumonia
+
+
+pneu_423.png
+
+Actual label =  pneumonia
+Histogram value =  [[0.00360709 0.9410062  0.05538676]]
+Predicted label =  covid
+
+
+pneu_431.png
+
+Actual label =  pneumonia
+Histogram value =  [[1.0000000e+00 1.2280969e-18 2.9441855e-11]]
+Predicted label =  normal
+
+
+------------------------------
+
+cov_192.png
+
+Actual label =  covid
+Histogram value =  [[9.9994445e-01 5.5549393e-05 6.8823933e-11]]
+Predicted label =  normal
+
+
+
+cov_811.png
+
+Actual label =  covid
+Histogram value =  [[0. 1. 0.]]
+Predicted label =  covid
+
+
+
+cov_111669.jpg
+
+Actual label =  covid
+Histogram value =  [[4.7832859e-08 1.0590448e-01 8.9409554e-01]]
+Predicted label =  pneumonia
+
+
+-----------------------------------
+
+norml_356.png
+
+Actual label =  normal
+Histogram value =  [[1.0000000e+00 1.9938351e-22 2.7024702e-17]]
+Predicted label =  normal
+
+
+norml_581.png
+
+Actual label =  normal
+Histogram value =  [[2.8913182e-03 9.9710876e-01 3.9232411e-12]]
+Predicted label =  covid
+
+
+norml_922.png
+
+Actual label =  normal
+Histogram value =  [[5.5568194e-06 1.4967614e-14 9.9999440e-01]]
+Predicted label =  pneumonia
+
+
+--------------------------
