@@ -73,7 +73,7 @@ for file_name in all_files:
     # plt.imshow(get_img,cmap='gray')
     # plt.show()
 
-    plt.imsave(str(file_name.split('.')[0]+".png"),heat_map)
+    plt.imsave(str(file_name.split('.')[0]+".png"),heat_map,dpi=300)
 
     print("Img = Max = ",get_img.max()," Min = ",get_img.min())
     print("heatmap = Max = ",heat_map.max()," Min = ",heat_map.min())
