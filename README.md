@@ -37,6 +37,8 @@ InceptionV3: done
 EfficientNetB1: done
 EfficientNetB7: done in gpu2
 ```
+EfficientNets showing very erratic nature for small batch sizes.\
+Best to leave them, considering their poor overall performance.
 
 Best: 50 epoch with whole data - Training
 ```

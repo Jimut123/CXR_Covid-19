@@ -1,5 +1,5 @@
 EPOCHS = 50
-MODEL_NAME = 'InceptionResNetV2'
+MODEL_NAME = 'InceptionV3'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
 
@@ -10,10 +10,10 @@ rev_index = {0: 'COVID-19', 1: 'Pneumonia', 2: 'Normal'}
 
 import pickle
 
-with open('y_test_list_50e_InceptionResNetV2_360x360_128-32-3.pkl', 'rb') as f:
+with open('y_test_list_50e_InceptionV3_360x360_128-32-3.pkl', 'rb') as f:
     y_test_list = pickle.load(f)
 
-with open('y_pred_list_50e_InceptionResNetV2_360x360_128-32-3.pkl', 'rb') as f:
+with open('y_pred_list_50e_InceptionV3_360x360_128-32-3.pkl', 'rb') as f:
     y_pred_list = pickle.load(f)
 # y_test_list, y_pred_list
 
