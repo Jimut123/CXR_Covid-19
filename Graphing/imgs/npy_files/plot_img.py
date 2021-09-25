@@ -50,35 +50,37 @@ all_files = glob.glob("*.npy")
 
 
 for file_name in all_files:
-    get_img_name = file_name.split('_')[0]+"_"+file_name.split('_')[1]
-    print(get_img_name)
+    try:
+        get_img_name = file_name.split('_')[0]+"_"+file_name.split('_')[1]
+        print(get_img_name)
 
-    get_img_name_folder = "img/"+get_img_name+".png"
-    get_img = cv2.imread(get_img_name_folder)
-    get_img = cv2.cvtColor(get_img, cv2.COLOR_BGR2GRAY)
-    get_img = np.array(get_img)
+        get_img_name_folder = "img/"+get_img_name+".png"
+        get_img = cv2.imread(get_img_name_folder)
+        get_img = cv2.cvtColor(get_img, cv2.COLOR_BGR2GRAY)
+        get_img = np.array(get_img)
 
-    heat_map = np.load(file_name)
-    heat_map = cv2.resize(heat_map, (get_img.shape[0],get_img.shape[1]))
-    cmap = plt.cm.hot
-    norm = plt.Normalize(vmin=heat_map.min(), vmax=heat_map.max())
-    heat_map = cmap(norm(heat_map))
+        heat_map = np.load(file_name)
+        heat_map = cv2.resize(heat_map, (get_img.shape[0],get_img.shape[1]))
+        cmap = plt.cm.hot
+        norm = plt.Normalize(vmin=heat_map.min(), vmax=heat_map.max())
+        heat_map = cmap(norm(heat_map))
 
-    
-    # img3 = np.array(img3*255.0,np.int32)
+        
+        # img3 = np.array(img3*255.0,np.int32)
 
-    # plt.imshow(heat_map,cmap='hot')
-    # plt.show()
+        # plt.imshow(heat_map,cmap='hot')
+        # plt.show()
 
-    # plt.imshow(get_img,cmap='gray')
-    # plt.show()
+        # plt.imshow(get_img,cmap='gray')
+        # plt.show()
 
-    plt.imsave(str(file_name.split('.')[0]+".png"),heat_map,dpi=300)
+        plt.imsave(str(file_name.split('.')[0]+".png"),heat_map,dpi=300)
 
-    print("Img = Max = ",get_img.max()," Min = ",get_img.min())
-    print("heatmap = Max = ",heat_map.max()," Min = ",heat_map.min())
-    print(get_img.shape)
-    
+        print("Img = Max = ",get_img.max()," Min = ",get_img.min())
+        print("heatmap = Max = ",heat_map.max()," Min = ",heat_map.min())
+        print(get_img.shape)
+    except:
+        print("Passed = > ", file_name)
 
     
     # merged_img = get_img*0.5 + heat_map*0.5
