@@ -3,6 +3,39 @@ index = {'normal': 0, 'covid': 1,  'pneumonia': 2}
 rev_index = {0: 'normal',1: 'covid', 2: 'pneumonia'}
 
 ===========================================================================
+# Actual = Covid -> Pred = covid
+
+! cp validation/covid/cov_322.png .
+# [[6.4819908e-08 9.9999988e-01 4.9942143e-15]]
+
+! cp validation/covid/cov_111665.jpg .
+# [[4.899920e-21 9.999999e-01 8.640558e-08]]
+
+
+# Covid > Normal
+
+! cp validation/covid/cov_1056.png .
+# [[9.9995697e-01 3.9018854e-05 4.0789382e-06]]
+
+
+
+# Covid > Pneumonia
+
+! cp validation/covid/cov_201.png .
+# [[2.1874209e-28 2.3200859e-05 9.9997675e-01]]
+
+! cp validation/covid/cov_111679.jpg .
+# [[2.9582764e-20 3.0584136e-04 9.9969423e-01]]
+
+! cp validation/covid/cov_1114.png .
+# [[2.7164729e-11 3.8764692e-06 9.9999607e-01]]
+
+
+
+
+=================================================================
+
+
 
 pneu_920.png
 
@@ -74,3 +107,39 @@ Predicted label =  pneumonia
 
 
 --------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+validation/covid/cov_25.png
+Actual label =  covid
+Histogram value =  [[0. 1. 0.]]
+Predicted label =  covid
+
+
+
+
+
+
+
+
+
