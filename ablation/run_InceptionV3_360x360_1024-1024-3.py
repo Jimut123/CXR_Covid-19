@@ -117,7 +117,7 @@ def parse_filepath(filepath):
 
 np.random.seed(42)
 
-H, W, C = 500, 500, 3
+H, W, C = 360, 360, 3
 N_LABELS = len(index)
 D = 1
 
@@ -140,7 +140,7 @@ train_idx = p[:len(df_train)]
 
 
 ##################################
-H, W, C = 500, 500, 3
+H, W, C = 360, 360, 3
 N_LABELS = len(index)
 D = 1
 ##################################
@@ -176,7 +176,7 @@ from keras.layers import Dense, Flatten, GlobalAveragePooling2D
 
 # Change the pretrained model name according to the given criteria
 
-frozen = InceptionV3 (weights="imagenet", input_shape=(500, 500,3), include_top=False)
+frozen = InceptionV3 (weights="imagenet", input_shape=(360, 360,3), include_top=False)
 frozen.summary()
 
 trainable = frozen.output
@@ -248,8 +248,8 @@ def get_data_generator(df, indices, for_training, batch_size=16):
             # print("file, label = ",file, label)
             im_gray = Image.open(file).convert('L')
             # print("Shape = ",im_gray.shape)
-            im_gray = im_gray.resize((500, 500))
-            im = np.zeros(shape=(500, 500,3))
+            im_gray = im_gray.resize((360, 360))
+            im = np.zeros(shape=(360, 360,3))
             
             im[:,:,0] = im_gray
             im[:,:,1] = im_gray
@@ -338,8 +338,8 @@ for i in tqdm(test_idx):
 
     im_gray = Image.open(file_).convert('L')
     # print("Shape = ",im_gray.shape)
-    im_gray = im_gray.resize((500, 500))
-    im = np.zeros(shape=(500, 500,3))
+    im_gray = im_gray.resize((360, 360))
+    im = np.zeros(shape=(360, 360,3))
 
     im[:,:,0] = im_gray
     im[:,:,1] = im_gray
@@ -348,7 +348,7 @@ for i in tqdm(test_idx):
 
 
     # im = Image.open(file_)
-    # im = im.resize((500, 500))
+    # im = im.resize((360, 360))
     # im = np.array(im) / 255.0
     # print(im[np.newaxis, ...].shape)
     y_pred = model.predict(im[np.newaxis, ...])
