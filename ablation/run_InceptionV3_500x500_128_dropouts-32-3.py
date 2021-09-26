@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 1
+EPOCHS = 100
 MODEL_NAME = 'InceptionV3'
 IMG_SIZE = '500x500'
 OUTPUT_LAYERS = '128_dropouts-32-3'
