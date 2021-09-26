@@ -3,10 +3,10 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 100
+EPOCHS = 1
 MODEL_NAME = 'InceptionV3'
 IMG_SIZE = '500x500'
-OUTPUT_LAYERS = '128-32-3'
+OUTPUT_LAYERS = '128_dropouts-32-3'
 ###########################
 
 all_covid_files = glob.glob('/content/train/covid/*')
@@ -180,7 +180,7 @@ frozen = InceptionV3 (weights="imagenet", input_shape=(500, 500,3), include_top=
 frozen.summary()
 
 trainable = frozen.output
-trainable =  GlobalAveragePooling2D()(trainable)
+trainable =  Dropout(0.5)(GlobalAveragePooling2D()(trainable))
 #print(trainable.shape)
 trainable = Dense(128, activation="relu")(trainable)
 trainable = Dense(32, activation="relu")(trainable)
