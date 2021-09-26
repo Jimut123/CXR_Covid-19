@@ -1,5 +1,11 @@
 # CXR_Covid-19
 
+Labelling
+```
+index = {'normal': 0, 'covid': 1,  'pneumonia': 2}
+rev_index = {0: 'normal',1: 'covid', 2: 'pneumonia'}
+```
+
 To copy from source to destination, go to gpuserver3
 ```
 scp CXR_Covid-19_Challenge.zip sysadm@gpuserver2:/home/sysadm/sb/
