@@ -67,6 +67,10 @@ InceptionV3_500x500_1024-1024-3
   F1 =  2.0  Precision =  0.9187961001214342
 
 
+InceptionV3_360x360_1024-1024-3
+
+Accuracy =  0.9695027195027195  Sensitivity =  0.9499795158286779  Specificity =  0.9783333333333334 
+  F1 =  2.0  Precision =  0.9499706225886753
 
 
   
