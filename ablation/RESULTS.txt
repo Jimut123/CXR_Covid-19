@@ -61,3 +61,13 @@ InceptionV3_500x500_1024-1024-3
   F1 =  2.0  Precision =  0.9598712353470406
   
   
+  InceptionV3_500x500_1024_dropouts-1024-3
+  
+  Accuracy =  0.9442501942501943  Sensitivity =  0.90543947858473  Specificity =  0.9605449561403508 
+  F1 =  2.0  Precision =  0.9187961001214342
+
+
+
+
+  
+  
