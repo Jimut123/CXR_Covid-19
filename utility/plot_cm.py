@@ -5,8 +5,9 @@ OUTPUT_LAYERS = '1024-1024-3'
 
 
 
-index = {'COVID-19': 0, 'Pneumonia': 1, 'Normal': 2}
-rev_index = {0: 'COVID-19', 1: 'Pneumonia', 2: 'Normal'}
+index = {'normal': 0, 'covid': 1,  'pneumonia': 2}
+rev_index = {0: 'normal',1: 'covid', 2: 'pneumonia'}
+
 
 import pickle
 
