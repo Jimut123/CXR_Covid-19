@@ -73,5 +73,8 @@ Accuracy =  0.9695027195027195  Sensitivity =  0.9499795158286779  Specificity =
   F1 =  2.0  Precision =  0.9499706225886753
 
 
-  
+InceptionV3_500x500_128-32-3
+
+ Accuracy =  0.975135975135975  Sensitivity =  0.9580372439478584  Specificity =  0.9824561403508772
+  F1 =  2.0  Precision =  0.9584496522554081  
   
