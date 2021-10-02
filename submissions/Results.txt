@@ -1,2 +1,2 @@
 InceptionV3 == 94.42 (full)
-InceptionV3 ==  (valid)
+InceptionV3 == 94.67 (valid)
