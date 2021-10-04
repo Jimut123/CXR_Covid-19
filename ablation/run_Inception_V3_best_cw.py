@@ -310,7 +310,7 @@ callbacks = [
 logdir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 
-class_weights = {0: 7151, 1: 6534, 2: 4273}
+class_weights = {0: float(1/7151), 1: float(1/6534), 2: float(1/4273)}
 
 
 history = model.fit(train_gen,
