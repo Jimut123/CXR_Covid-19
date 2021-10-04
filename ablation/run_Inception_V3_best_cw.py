@@ -105,8 +105,8 @@ print(rev_index)
 
 
 
-index = {'normal': 0, 'covid': 1,  'pneumonia': 2}
-rev_index = {0: 'normal',1: 'covid', 2: 'pneumonia'}
+# index = {'normal': 0, 'covid': 1,  'pneumonia': 2}
+# rev_index = {0: 'normal',1: 'covid', 2: 'pneumonia'}
 sub_index = {1:0, 0:1, 2:2}
 
 
@@ -310,7 +310,7 @@ callbacks = [
 logdir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 
-class_weights = {0: float(10000/7151), 1: float(10000/6534), 2: float(10000/4273)}
+class_weights = {0: float(1000000/7151), 1: float(1000000/6534), 2: float(1000000/4273)}
 
 
 history = model.fit(train_gen,
