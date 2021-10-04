@@ -72,36 +72,36 @@ for item in dir:
   #get_freq.append(freq)
 
 
-# short_index = {}
-# total_img_names = []
-# short_labels = []
-# for item in dir:
-#   print(item)
-#   img_names = glob.glob("{}/*".format(item))[:5]
-#   print("img names = ",img_names[:10])
-#   short_name = str(img_names[0].split('.')[0]).split('/')[2].split('_')[0]
-#   short_index[short_name] = img_names[0].split('/')[1]
-#   short_labels.append(short_name)
-#   total_img_names.append(img_names)
-# print(total_img_names)
-# print(len(total_img_names))
-# print(short_labels)
-# print(short_index)
+short_index = {}
+total_img_names = []
+short_labels = []
+for item in dir:
+  print(item)
+  img_names = glob.glob("{}/*".format(item))[:5]
+  print("img names = ",img_names[:10])
+  short_name = str(img_names[0].split('.')[0]).split('/')[2].split('_')[0]
+  short_index[short_name] = img_names[0].split('/')[1]
+  short_labels.append(short_name)
+  total_img_names.append(img_names)
+print(total_img_names)
+print(len(total_img_names))
+print(short_labels)
+print(short_index)
 
-# short_rev_index = {}
-# for item in short_index:
-#   short_rev_index[short_index[item]] = item
-# print(short_rev_index)
+short_rev_index = {}
+for item in short_index:
+  short_rev_index[short_index[item]] = item
+print(short_rev_index)
 
-# index = {}
-# rev_index = {}
-# count = 0
-# for item in get_freq:
-#   index[item] = count
-#   rev_index[count] = item
-#   count += 1 
-# print(index)
-# print(rev_index)
+index = {}
+rev_index = {}
+count = 0
+for item in get_freq:
+  index[item] = count
+  rev_index[count] = item
+  count += 1 
+print(index)
+print(rev_index)
 
 
 
