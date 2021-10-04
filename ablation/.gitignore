@@ -1,4 +1,5 @@
 test_set/
+test.zip
 *.h5
 *.zip
 logs
