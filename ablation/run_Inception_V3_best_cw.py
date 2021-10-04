@@ -72,41 +72,41 @@ for item in dir:
   #get_freq.append(freq)
 
 
-# short_index = {}
-# total_img_names = []
-# short_labels = []
-# for item in dir:
-#   print(item)
-#   img_names = glob.glob("{}/*".format(item))[:5]
-#   print("img names = ",img_names[:10])
-#   short_name = str(img_names[0].split('.')[0]).split('/')[2].split('_')[0]
-#   short_index[short_name] = img_names[0].split('/')[1]
-#   short_labels.append(short_name)
-#   total_img_names.append(img_names)
-# print(total_img_names)
-# print(len(total_img_names))
-# print(short_labels)
-# print(short_index)
+short_index = {}
+total_img_names = []
+short_labels = []
+for item in dir:
+  print(item)
+  img_names = glob.glob("{}/*".format(item))[:5]
+  print("img names = ",img_names[:10])
+  short_name = str(img_names[0].split('.')[0]).split('/')[2].split('_')[0]
+  short_index[short_name] = img_names[0].split('/')[1]
+  short_labels.append(short_name)
+  total_img_names.append(img_names)
+print(total_img_names)
+print(len(total_img_names))
+print(short_labels)
+print(short_index)
 
-# short_rev_index = {}
-# for item in short_index:
-#   short_rev_index[short_index[item]] = item
-# print(short_rev_index)
+short_rev_index = {}
+for item in short_index:
+  short_rev_index[short_index[item]] = item
+print(short_rev_index)
 
-# index = {}
-# rev_index = {}
-# count = 0
-# for item in get_freq:
-#   index[item] = count
-#   rev_index[count] = item
-#   count += 1 
-# print(index)
-# print(rev_index)
+index = {}
+rev_index = {}
+count = 0
+for item in get_freq:
+  index[item] = count
+  rev_index[count] = item
+  count += 1 
+print(index)
+print(rev_index)
 
 
 
-index = {'normal': 0, 'covid': 1,  'pneumonia': 2}
-rev_index = {0: 'normal',1: 'covid', 2: 'pneumonia'}
+# index = {'normal': 0, 'covid': 1,  'pneumonia': 2}
+# rev_index = {0: 'normal',1: 'covid', 2: 'pneumonia'}
 sub_index = {1:0, 0:1, 2:2}
 
 
@@ -310,7 +310,7 @@ callbacks = [
 logdir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 
-class_weights = {0: float(10000/7151), 1: float(10000/6534), 2: float(10000/4273)}
+class_weights = {0: float(1000000/7151), 1: float(1000000/6534), 2: float(1000000/4273)}
 
 
 history = model.fit(train_gen,
