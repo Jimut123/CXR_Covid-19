@@ -296,8 +296,8 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow import keras
 # batch_size = 100
 # valid_batch_size = 32
-batch_size = 32
-valid_batch_size = 32
+batch_size = 16
+valid_batch_size = 16
 train_gen = get_data_generator(df_train, train_idx, for_training=True, batch_size=batch_size)
 valid_gen = get_data_generator(df_val, test_idx, for_training=True, batch_size=valid_batch_size)
 
@@ -310,7 +310,7 @@ callbacks = [
 logdir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 
-class_weights = {0: float(1/7151), 1: float(1/6534), 2: float(1/4273)}
+class_weights = {0: float(10000/7151), 1: float(10000/6534), 2: float(10000/4273)}
 
 
 history = model.fit(train_gen,
