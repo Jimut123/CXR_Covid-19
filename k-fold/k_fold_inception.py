@@ -292,6 +292,14 @@ for train_index in kf.split(train_idx_total):
     print('train count: %s,  test count: %s' % (
     len(train_idx),  len(test_idx)))
     print(hist)
+        
+    print('***********************************************')
+    print('Fold no :: ',fold_no)
+    print("Dist Hist :: " hist)
+    print('***********************************************')
+    fp = open('fold_hist.txt','w')
+    fp.write(str("Fold no :: "+fold_no+"\n "+"Dist Hist :: "+hist))
+    fp.close()
 
     from tensorflow.keras.applications import InceptionV3 
     from tensorflow.keras.preprocessing import image
@@ -422,7 +430,7 @@ for train_index in kf.split(train_idx_total):
     y_test_list = []
 
     for i in tqdm(test_idx):
-        r = df_val.iloc[i]
+        r = df_train.iloc[i]
         file_, label = r['file'], r['label']
 
         im_gray = Image.open(file_).convert('L')
