@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 1
+EPOCHS = 100
 MODEL_NAME = 'InceptionV3_ghapla'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
@@ -225,7 +225,7 @@ def specificity(y_true, y_pred):
 
 
 
-opt = Adam(learning_rate=7.77e-5)
+opt = Adam(learning_rate=6.667e-5)
 model.compile(optimizer=opt, loss='categorical_crossentropy',
             #experimental_run_tf_function=False,
             metrics = ['accuracy', sensitivity, specificity]
