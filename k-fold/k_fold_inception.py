@@ -5,7 +5,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 100
+EPOCHS = 1
 MODEL_NAME = 'InceptionV3_final'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
@@ -476,9 +476,13 @@ for train_index in kf.split(train_idx_total):
     matrix = confusion_matrix(y_test_list, y_pred_list)
     report = classification_report(y_test_list, y_pred_list)
     cm_analysis(y_test_list, y_pred_list, [i for i in rev_index] , ymap=None, figsize=(10,10))
+    
+    fp = open('report_CXR_Covid-19_{}e_{}_{}_{}_fold_{}.txt'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS,fold_no),'w')
+    fp.write(str(report))
+    fp.close()
 
-    with open('report_CXR_Covid-19_{}e_{}_{}_{}_fold_{}.txt'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS,fold_no), 'w') as f:
-        sys.stdout = f # Change the standard output to the file we created.
-        print(report)
-        #sys.stdout = original_stdout # Reset the standard output to its original value
+    # with open('report_CXR_Covid-19_{}e_{}_{}_{}_fold_{}.txt'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS,fold_no), 'w') as f:
+    #     sys.stdout = f # Change the standard output to the file we created.
+    #     print(report)
+    #     #sys.stdout = original_stdout # Reset the standard output to its original value
         
