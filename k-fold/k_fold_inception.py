@@ -297,7 +297,7 @@ for train_index in kf.split(train_idx_total):
     print('Fold no :: ',fold_no)
     print("Dist Hist :: ",hist)
     print('***********************************************')
-    fp = open('fold_hist.txt','w')
+    fp = open('fold_hist_{}.txt'.format(fold_no),'w')
     fp.write(str("Fold no :: "+str(fold_no)+"\n "+"Dist Hist :: "+str(hist)+"\n\n"))
     fp.close()
 
@@ -485,4 +485,3 @@ for train_index in kf.split(train_idx_total):
     #     sys.stdout = f # Change the standard output to the file we created.
     #     print(report)
     #     #sys.stdout = original_stdout # Reset the standard output to its original value
-        
