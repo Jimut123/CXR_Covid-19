@@ -225,7 +225,7 @@ def specificity(y_true, y_pred):
 
 
 
-opt = Adam(learning_rate=7.77e-5)
+opt = Adam(learning_rate=6.667e-5)
 model.compile(optimizer=opt, loss='categorical_crossentropy',
             #experimental_run_tf_function=False,
             metrics = ['accuracy', sensitivity, specificity]
