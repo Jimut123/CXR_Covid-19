@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 100
+EPOCHS = 1
 MODEL_NAME = 'InceptionV3_ghapla'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
@@ -102,6 +102,9 @@ for item in get_freq:
   count += 1 
 print(index)
 print(rev_index)
+
+
+sub_index = {1:0, 0:1, 2:2}
 
 def parse_filepath(filepath):
     try:
