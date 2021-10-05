@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 1
+EPOCHS = 100
 MODEL_NAME = 'InceptionV3'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
@@ -222,7 +222,7 @@ def specificity(y_true, y_pred):
 
 
 
-opt = Adam(learning_rate=1e-4)
+opt = Adam(learning_rate=7.77e-5)
 model.compile(optimizer=opt, loss='categorical_crossentropy',
             #experimental_run_tf_function=False,
             metrics = ['accuracy', sensitivity, specificity]
@@ -288,8 +288,8 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow import keras
 # batch_size = 100
 # valid_batch_size = 32
-batch_size = 16
-valid_batch_size = 16
+batch_size = 32
+valid_batch_size = 32
 train_gen = get_data_generator(df_train, train_idx, for_training=True, batch_size=batch_size)
 # valid_gen = get_data_generator(df_val, test_idx, for_training=True, batch_size=valid_batch_size)
 
@@ -372,7 +372,7 @@ for item in sub_dic:
 
 keys = toCSV[0].keys()
 
-with open('submission_inceptionv3_360x360_128_full_dataset_50_epochs.csv', 'w', newline='')  as output_file:
+with open('submission_ghapla.csv', 'w', newline='')  as output_file:
     dict_writer = csv.DictWriter(output_file, keys)
     dict_writer.writeheader()
     dict_writer.writerows(toCSV)
