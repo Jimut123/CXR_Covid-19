@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 1
+EPOCHS = 50
 MODEL_NAME = 'InceptionV3_best_ghapla'
 IMG_SIZE = '500x500'
 OUTPUT_LAYERS = '1024-1024-3'
