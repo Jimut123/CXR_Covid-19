@@ -253,7 +253,7 @@ def get_data_generator(df, indices, for_training, batch_size=16):
             im[:,:,0] = im_gray
             im[:,:,1] = im_gray
             im[:,:,2] = im_gray
-            im = np.array(im) / 255.0
+            im = np.array(im) / max(np.array(im))
 
             # print(im.shape)
             images.append(im)
@@ -355,7 +355,7 @@ for file_path in tqdm(test_files):
     im[:,:,0] = im_gray
     im[:,:,1] = im_gray
     im[:,:,2] = im_gray
-    im = np.array(im) / 255.0
+    im = np.array(im) / max(np.array(im))
     
     y_pred = model.predict(im[np.newaxis, ...])
     # y_pred_list.append(int(tf.math.argmax(y_pred, axis=-1)))
@@ -404,12 +404,12 @@ with open('submission_ghapla.csv', 'w', newline='')  as output_file:
 #     im[:,:,0] = im_gray
 #     im[:,:,1] = im_gray
 #     im[:,:,2] = im_gray
-#     im = np.array(im) / 255.0
+#     im = np.array(im) / max(np.array(im))
 
 
 #     # im = Image.open(file_)
 #     # im = im.resize((360, 360))
-#     # im = np.array(im) / 255.0
+#     # im = np.array(im) / max(np.array(im))
 #     # print(im[np.newaxis, ...].shape)
 #     y_pred = model.predict(im[np.newaxis, ...])
 #     y_pred_list.append(int(tf.math.argmax(y_pred, axis=-1)))
