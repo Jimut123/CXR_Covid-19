@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 100
+EPOCHS = 10
 MODEL_NAME = 'InceptionV3_ghapla'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
@@ -225,7 +225,7 @@ def specificity(y_true, y_pred):
 
 
 
-opt = Adam(learning_rate=6.667e-5)
+opt = Adam(learning_rate=1e-4)
 model.compile(optimizer=opt, loss='categorical_crossentropy',
             #experimental_run_tf_function=False,
             metrics = ['accuracy', sensitivity, specificity]
@@ -375,7 +375,7 @@ for item in sub_dic:
 
 keys = toCSV[0].keys()
 
-with open('submission_ghapla_100e_IV3_360_128.csv', 'w', newline='')  as output_file:
+with open('submission_test.csv', 'w', newline='')  as output_file:
     dict_writer = csv.DictWriter(output_file, keys)
     dict_writer.writeheader()
     dict_writer.writerows(toCSV)
