@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 10
+EPOCHS = 100
 MODEL_NAME = 'InceptionV3_ghapla'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
@@ -375,7 +375,7 @@ for item in sub_dic:
 
 keys = toCSV[0].keys()
 
-with open('submission_ghapla.csv', 'w', newline='')  as output_file:
+with open('submission_ghapla_100e_IV3_360_128.csv', 'w', newline='')  as output_file:
     dict_writer = csv.DictWriter(output_file, keys)
     dict_writer.writeheader()
     dict_writer.writerows(toCSV)
