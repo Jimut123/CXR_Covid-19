@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 ###########################
 EPOCHS = 1
-MODEL_NAME = 'InceptionV3_best_class_weights'
+MODEL_NAME = 'InceptionV3_best_ghapla'
 IMG_SIZE = '500x500'
 OUTPUT_LAYERS = '1024-1024-3'
 ###########################
@@ -193,7 +193,7 @@ trainable = Dense(1024, activation="relu")(trainable)
 trainable = Dense(1024, activation="relu")(trainable)
 trainable = Dense(N_LABELS, activation="softmax")(trainable)
 model = Model(inputs=frozen.input, outputs=trainable)
-model.summary()
+#model.summary()
 
 # model.layers
 # for layer in model.layers[:-4]:
@@ -310,13 +310,13 @@ callbacks = [
 logdir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 
-class_weights = {0: float(1000000/7151), 1: float(1000000/6534), 2: float(1000000/4273)}
+# class_weights = {0: float(1000000/7151), 1: float(1000000/6534), 2: float(1000000/4273)}
 
 
 history = model.fit(train_gen,
                     steps_per_epoch=len(train_idx)//batch_size,
                     epochs=EPOCHS,
-                    class_weight=class_weights,
+                    # class_weight=class_weights,
                     callbacks=[tensorboard_callback,callbacks],
                     validation_data=valid_gen,
                     validation_steps=len(test_idx)//valid_batch_size)
