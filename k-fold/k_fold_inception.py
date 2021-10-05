@@ -5,7 +5,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 1
+EPOCHS = 100
 MODEL_NAME = 'InceptionV3_final'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
@@ -417,7 +417,7 @@ for train_index in kf.split(train_idx_total):
 
     keys = toCSV[0].keys()
     file_name_submission = 'submission_{}e_{}_{}_{}_fold_{}.csv'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS,fold_no)
-    with open('submission_test.csv', 'w', newline='')  as output_file:
+    with open(file_name_submission, 'w', newline='')  as output_file:
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(toCSV)
