@@ -5,7 +5,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 1
+EPOCHS = 100
 MODEL_NAME = 'InceptionV3_final'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
@@ -298,7 +298,7 @@ for train_index in kf.split(train_idx_total):
     print("Dist Hist :: ",hist)
     print('***********************************************')
     fp = open('fold_hist.txt','w')
-    fp.write(str("Fold no :: "+str(fold_no)+"\n "+"Dist Hist :: "+str(hist)))
+    fp.write(str("Fold no :: "+str(fold_no)+"\n "+"Dist Hist :: "+str(hist)+"\n\n"))
     fp.close()
 
     from tensorflow.keras.applications import InceptionV3 
