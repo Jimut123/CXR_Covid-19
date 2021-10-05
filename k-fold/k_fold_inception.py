@@ -298,7 +298,7 @@ for train_index in kf.split(train_idx_total):
     print("Dist Hist :: ",hist)
     print('***********************************************')
     fp = open('fold_hist.txt','w')
-    fp.write(str("Fold no :: "+fold_no+"\n "+"Dist Hist :: "+hist))
+    fp.write(str("Fold no :: "+str(fold_no)+"\n "+"Dist Hist :: "+str(hist)))
     fp.close()
 
     from tensorflow.keras.applications import InceptionV3 
