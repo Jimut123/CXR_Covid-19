@@ -292,10 +292,10 @@ for train_index in kf.split(train_idx_total):
     print('train count: %s,  test count: %s' % (
     len(train_idx),  len(test_idx)))
     print(hist)
-        
+
     print('***********************************************')
     print('Fold no :: ',fold_no)
-    print("Dist Hist :: " hist)
+    print("Dist Hist :: ",hist)
     print('***********************************************')
     fp = open('fold_hist.txt','w')
     fp.write(str("Fold no :: "+fold_no+"\n "+"Dist Hist :: "+hist))
