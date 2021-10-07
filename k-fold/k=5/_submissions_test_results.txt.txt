@@ -1,0 +1,59 @@
+split = 1
+
+{
+  "case": {},
+  "aggregates": {
+    "Accuracy_score": 0.9466666666666667,
+    "Sensitivity_score": 0.9466666666666667,
+    "Specificity_score": 0.9476979908411111
+  }
+}
+
+
+split = 2
+
+{
+  "case": {},
+  "aggregates": {
+    "Accuracy_score": 0.945,
+    "Sensitivity_score": 0.945,
+    "Specificity_score": 0.946189091105332
+  }
+}
+
+
+split = 3
+
+{
+  "case": {},
+  "aggregates": {
+    "Accuracy_score": 0.9425,
+    "Sensitivity_score": 0.9425,
+    "Specificity_score": 0.9450676045698234
+  }
+}
+
+
+
+split = 4
+
+{
+  "case": {},
+  "aggregates": {
+    "Accuracy_score": 0.9325,
+    "Sensitivity_score": 0.9325000000000001,
+    "Specificity_score": 0.9359669213533839
+  }
+}
+
+
+split = 5
+
+{
+  "case": {},
+  "aggregates": {
+    "Accuracy_score": 0.9458333333333333,
+    "Sensitivity_score": 0.9458333333333333,
+    "Specificity_score": 0.9480070559747235
+  }
+}
