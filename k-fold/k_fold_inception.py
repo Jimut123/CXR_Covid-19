@@ -1,12 +1,12 @@
-# Use k = 5 using the combination of validation set
+# Use k = 4 using the combination of validation set
 
 import glob
 import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 100
-MODEL_NAME = 'InceptionV3_final'
+EPOCHS = 50
+MODEL_NAME = 'InceptionV3_4_fold'
 IMG_SIZE = '360x360'
 OUTPUT_LAYERS = '128-32-3'
 ###########################
@@ -259,7 +259,7 @@ train_idx_total = p[:len(df_train)]
 
 from sklearn.model_selection import KFold
 
-kf = KFold(n_splits=5)
+kf = KFold(n_splits=4)
 kf.get_n_splits(train_idx_total)
 
 fold_no = 0
@@ -297,7 +297,7 @@ for train_index in kf.split(train_idx_total):
     print('Fold no :: ',fold_no)
     print("Dist Hist :: ",hist)
     print('***********************************************')
-    fp = open('fold_hist_{}.txt'.format(fold_no),'w')
+    fp = open('4_fold_hist_{}.txt'.format(fold_no),'w')
     fp.write(str("Fold no :: "+str(fold_no)+"\n "+"Dist Hist :: "+str(hist)+"\n\n"))
     fp.close()
 
@@ -333,8 +333,8 @@ for train_index in kf.split(train_idx_total):
     from tensorflow import keras
     # batch_size = 100
     # valid_batch_size = 32
-    batch_size = 16
-    valid_batch_size = 16
+    batch_size = 32
+    valid_batch_size = 32
     train_gen = get_data_generator(df_train, train_idx, for_training=True, batch_size=batch_size)
     valid_gen = get_data_generator(df_train, test_idx, for_training=True, batch_size=valid_batch_size)
 
