@@ -1,3 +1,3 @@
 Fold no :: 3
- Dist Hist :: {'pneumonia': 3955, 'covid': 5976, 'normal': 6112}
+ Dist Hist :: {'pneumonia': 3201, 'covid': 4948, 'normal': 5320}
 
