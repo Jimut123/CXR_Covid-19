@@ -3,10 +3,10 @@ import cv2
 import matplotlib.pyplot as plt
 
 ###########################
-EPOCHS = 50
-MODEL_NAME = 'InceptionV3_best_ghapla'
-IMG_SIZE = '500x500'
-OUTPUT_LAYERS = '1024-1024-3'
+EPOCHS = 10
+MODEL_NAME = 'InceptionV3_ghapla'
+IMG_SIZE = '360x360'
+OUTPUT_LAYERS = '128-32-3'
 ###########################
 
 all_covid_files = glob.glob('/content/train/covid/*')
@@ -104,11 +104,7 @@ print(index)
 print(rev_index)
 
 
-
-# index = {'normal': 0, 'covid': 1,  'pneumonia': 2}
-# rev_index = {0: 'normal',1: 'covid', 2: 'pneumonia'}
 sub_index = {1:0, 0:1, 2:2}
-
 
 def parse_filepath(filepath):
     try:
@@ -124,7 +120,7 @@ def parse_filepath(filepath):
 
 np.random.seed(42)
 
-H, W, C = 500, 500, 3
+H, W, C = 360, 360, 3
 N_LABELS = len(index)
 D = 1
 
@@ -147,33 +143,32 @@ train_idx = p[:len(df_train)]
 
 
 ##################################
-H, W, C = 500, 500, 3
+H, W, C = 360, 360, 3
 N_LABELS = len(index)
 D = 1
 ##################################
 
-files_validation = glob.glob("validation/*/*.*")
-print("Total files valid = ",len(files_validation))
+# files_validation = glob.glob("validation/*/*.*")
+# print("Total files valid = ",len(files_validation))
 
-# create a pandas data frame of images, age, gender and race
-attributes = list(map(parse_filepath, files_validation))
+# # create a pandas data frame of images, age, gender and race
+# attributes = list(map(parse_filepath, files_validation))
 
-df_val = pd.DataFrame(attributes)
-df_val['file'] = files_validation
-df_val.columns = ['label', 'file']
-df_val = df_val.dropna()
-df_val.tail()
+# df_val = pd.DataFrame(attributes)
+# df_val['file'] = files_validation
+# df_val.columns = ['label', 'file']
+# df_val = df_val.dropna()
+# df_val.tail()
 
-print(len(df_val))
-p = np.random.permutation(len(df_val))
-test_idx = p[:len(df_val)]
+# print(len(df_val))
+# p = np.random.permutation(len(df_val))
+# test_idx = p[:len(df_val)]
 
-print('train count: %s,  test count: %s' % (
-    len(train_idx),  len(test_idx)))
-
+print('train count: %s' % (len(train_idx)))
 
 
-from tensorflow.keras.applications import InceptionV3
+
+from tensorflow.keras.applications import InceptionV3 
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.vgg16 import preprocess_input
 from keras.models import Model
@@ -183,17 +178,17 @@ from keras.layers import Dense, Flatten, GlobalAveragePooling2D
 
 # Change the pretrained model name according to the given criteria
 
-frozen = InceptionV3 (weights="imagenet", input_shape=(500, 500,3), include_top=False)
+frozen = InceptionV3(weights="imagenet", input_shape=(360, 360,3), include_top=False)
 frozen.summary()
 
 trainable = frozen.output
 trainable = GlobalAveragePooling2D()(trainable)
 #print(trainable.shape)
-trainable = Dense(1024, activation="relu")(trainable)
-trainable = Dense(1024, activation="relu")(trainable)
+trainable = Dense(128, activation="relu")(trainable)
+trainable = Dense(32, activation="relu")(trainable)
 trainable = Dense(N_LABELS, activation="softmax")(trainable)
 model = Model(inputs=frozen.input, outputs=trainable)
-#model.summary()
+model.summary()
 
 # model.layers
 # for layer in model.layers[:-4]:
@@ -255,13 +250,13 @@ def get_data_generator(df, indices, for_training, batch_size=16):
             # print("file, label = ",file, label)
             im_gray = Image.open(file).convert('L')
             # print("Shape = ",im_gray.shape)
-            im_gray = im_gray.resize((500, 500))
-            im = np.zeros(shape=(500, 500,3))
+            im_gray = im_gray.resize((360, 360))
+            im = np.zeros(shape=(360, 360,3))
             
             im[:,:,0] = im_gray
             im[:,:,1] = im_gray
             im[:,:,2] = im_gray
-            im = np.array(im) / 255.0
+            im = np.array(im) / im.max()
 
             # print(im.shape)
             images.append(im)
@@ -296,10 +291,10 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow import keras
 # batch_size = 100
 # valid_batch_size = 32
-batch_size = 16
-valid_batch_size = 16
+batch_size = 32
+valid_batch_size = 32
 train_gen = get_data_generator(df_train, train_idx, for_training=True, batch_size=batch_size)
-valid_gen = get_data_generator(df_val, test_idx, for_training=True, batch_size=valid_batch_size)
+# valid_gen = get_data_generator(df_val, test_idx, for_training=True, batch_size=valid_batch_size)
 
 callbacks = [
     ModelCheckpoint("./model_checkpoint", monitor='val_loss'),
@@ -310,19 +305,16 @@ callbacks = [
 logdir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 
-# class_weights = {0: float(1000000/7151), 1: float(1000000/6534), 2: float(1000000/4273)}
-
-
 history = model.fit(train_gen,
                     steps_per_epoch=len(train_idx)//batch_size,
                     epochs=EPOCHS,
-                    # class_weight=class_weights,
-                    callbacks=[tensorboard_callback,callbacks],
-                    validation_data=valid_gen,
-                    validation_steps=len(test_idx)//valid_batch_size)
+                    callbacks=[tensorboard_callback,callbacks])
+                    # validation_data=valid_gen,
+                    # validation_steps=len(test_idx)//valid_batch_size)
 
 
 import pandas as pd
+
 hist_df = pd.DataFrame(history.history) 
 hist_json_file = 'history_CXR_Covid-19_{}e_{}_{}_{}.json'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS)
 with open(hist_json_file, mode='w') as f:
@@ -335,6 +327,7 @@ model.save('CXR_Covid-19_{}e_{}_{}_{}.h5'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUT
 
 from tensorflow import keras
 model = keras.models.load_model('CXR_Covid-19_{}e_{}_{}_{}.h5'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), custom_objects={'specificity': specificity, 'sensitivity': sensitivity})
+
 
 
 
@@ -359,13 +352,13 @@ for file_path in tqdm(test_files):
 
     im_gray = Image.open(file_path).convert('L')
     # print("Shape = ",im_gray.shape)
-    im_gray = im_gray.resize((500, 500))
-    im = np.zeros(shape=(500, 500, 3))
+    im_gray = im_gray.resize((360, 360))
+    im = np.zeros(shape=(360, 360, 3))
 
     im[:,:,0] = im_gray
     im[:,:,1] = im_gray
     im[:,:,2] = im_gray
-    im = np.array(im) / 255.0
+    im = np.array(im) / im.max()
     
     y_pred = model.predict(im[np.newaxis, ...])
     # y_pred_list.append(int(tf.math.argmax(y_pred, axis=-1)))
@@ -382,122 +375,130 @@ for item in sub_dic:
 
 keys = toCSV[0].keys()
 
-with open('submission_class_weights_inceptionv3_500x500_1024_train_100_epochs.csv', 'w', newline='')  as output_file:
+with open('submission_test.csv', 'w', newline='')  as output_file:
     dict_writer = csv.DictWriter(output_file, keys)
     dict_writer.writeheader()
     dict_writer.writerows(toCSV)
 
 
-from tensorflow.keras.utils import to_categorical
-from PIL import Image
-from tqdm import tqdm
-y_pred_list = []
-y_test_list = []
-
-for i in tqdm(test_idx):
-    r = df_val.iloc[i]
-    file_, label = r['file'], r['label']
-
-    im_gray = Image.open(file_).convert('L')
-    # print("Shape = ",im_gray.shape)
-    im_gray = im_gray.resize((500, 500))
-    im = np.zeros(shape=(500, 500,3))
-
-    im[:,:,0] = im_gray
-    im[:,:,1] = im_gray
-    im[:,:,2] = im_gray
-    im = np.array(im) / 255.0
-
-
-    # im = Image.open(file_)
-    # im = im.resize((500, 500))
-    # im = np.array(im) / 255.0
-    # print(im[np.newaxis, ...].shape)
-    y_pred = model.predict(im[np.newaxis, ...])
-    y_pred_list.append(int(tf.math.argmax(y_pred, axis=-1)))
-    #print(index[label])
-    y_test_list.append(index[label])
-    # print("This = ",rev_index[int(tf.math.argmax(y_pred, axis=-1))])
-    # print(to_categorical(index[label], N_LABELS))
-    # print(label)
-
-
-import pickle
-
-with open('y_test_list_{}e_{}_{}_{}.pkl'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), 'wb') as f:
-    pickle.dump(y_test_list, f)
-with open('y_pred_list_{}e_{}_{}_{}.pkl'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), 'wb') as f:
-    pickle.dump(y_pred_list, f)
-
-with open('y_test_list_{}e_{}_{}_{}.pkl'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), 'rb') as f:
-    y_test_list = pickle.load(f)
-with open('y_pred_list_{}e_{}_{}_{}.pkl'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), 'rb') as f:
-    y_pred_list = pickle.load(f)
-# y_test_list, y_pred_list
 
 
 
-from sklearn.metrics import classification_report, confusion_matrix
-matrix = confusion_matrix(y_test_list, y_pred_list)
-report = classification_report(y_test_list, y_pred_list)
-
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.metrics import confusion_matrix
 
 
 
-def cm_analysis(y_true, y_pred, labels, ymap=None, figsize=(10,10)):
-    """
-    Generate matrix plot of confusion matrix with pretty annotations.
-    The plot image is saved to disk.
-    args: 
-      y_true:    true label of the data, with shape (nsamples,)
-      y_pred:    prediction of the data, with shape (nsamples,)
-      filename:  filename of figure file to save
-      labels:    string array, name the order of class labels in the confusion matrix.
-                 use `clf.classes_` if using scikit-learn models.
-                 with shape (nclass,).
-      ymap:      dict: any -> string, length == nclass.
-                 if not None, map the labels & ys to more understandable strings.
-                 Caution: original y_true, y_pred and labels must align.
-      figsize:   the size of the figure plotted.
-    """
-    if ymap is not None:
-        y_pred = [ymap[yi] for yi in y_pred]
-        y_true = [ymap[yi] for yi in y_true]
-        labels = [ymap[yi] for yi in labels]
-    cm = confusion_matrix(y_true, y_pred, labels=labels)
-    cm_sum = np.sum(cm, axis=1, keepdims=True)
-    cm_perc = cm / cm_sum.astype(float) * 100
-    annot = np.empty_like(cm).astype(str)
-    nrows, ncols = cm.shape
-    for i in range(nrows):
-        for j in range(ncols):
-            c = cm[i, j]
-            p = cm_perc[i, j]
-            if i == j:
-                s = cm_sum[i]
-                annot[i, j] = '%.1f%%\n%d/%d' % (p, c, s)
-            elif c == 0:
-                annot[i, j] = ''
-            else:
-                annot[i, j] = '%.1f%%\n%d' % (p, c)
-    cm = pd.DataFrame(cm, index=[rev_index[i] for i in rev_index], columns=[rev_index[i] for i in rev_index])
-    cm.index.name = 'Actual'
-    cm.columns.name = 'Predicted'
-    fig, ax = plt.subplots(figsize=figsize)
-    sns.heatmap(cm, annot=annot, fmt='', ax=ax, cmap='rocket_r')
-    #plt.savefig(filename)
-    plt.savefig('confusion_matrix_CXR_Covid-19_{}e_{}_{}_{}.png'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS))
-    plt.savefig('confusion_matrix_CXR_Covid-19_{}e_{}_{}_{}.eps'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS))
-    #plt.show()
 
-cm_analysis(y_test_list, y_pred_list, [i for i in rev_index] , ymap=None, figsize=(10,10))
 
-with open('report_CXR_Covid-19_{}e_{}_{}_{}.txt'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), 'w') as f:
-    sys.stdout = f # Change the standard output to the file we created.
-    print(report)
-    #sys.stdout = original_stdout # Reset the standard output to its original value
+# from tensorflow.keras.utils import to_categorical
+# from PIL import Image
+# from tqdm import tqdm
+# y_pred_list = []
+# y_test_list = []
+
+# for i in tqdm(test_idx):
+#     r = df_val.iloc[i]
+#     file_, label = r['file'], r['label']
+
+#     im_gray = Image.open(file_).convert('L')
+#     # print("Shape = ",im_gray.shape)
+#     im_gray = im_gray.resize((360, 360))
+#     im = np.zeros(shape=(360, 360,3))
+
+#     im[:,:,0] = im_gray
+#     im[:,:,1] = im_gray
+#     im[:,:,2] = im_gray
+#     im = np.array(im) / im.max()
+
+
+#     # im = Image.open(file_)
+#     # im = im.resize((360, 360))
+#     # im = np.array(im) / im.max()
+#     # print(im[np.newaxis, ...].shape)
+#     y_pred = model.predict(im[np.newaxis, ...])
+#     y_pred_list.append(int(tf.math.argmax(y_pred, axis=-1)))
+#     #print(index[label])
+#     y_test_list.append(index[label])
+#     # print("This = ",rev_index[int(tf.math.argmax(y_pred, axis=-1))])
+#     # print(to_categorical(index[label], N_LABELS))
+#     # print(label)
+
+
+# import pickle
+
+# with open('y_test_list_{}e_{}_{}_{}.pkl'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), 'wb') as f:
+#     pickle.dump(y_test_list, f)
+# with open('y_pred_list_{}e_{}_{}_{}.pkl'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), 'wb') as f:
+#     pickle.dump(y_pred_list, f)
+
+# with open('y_test_list_{}e_{}_{}_{}.pkl'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), 'rb') as f:
+#     y_test_list = pickle.load(f)
+# with open('y_pred_list_{}e_{}_{}_{}.pkl'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), 'rb') as f:
+#     y_pred_list = pickle.load(f)
+# # y_test_list, y_pred_list
+
+
+
+# from sklearn.metrics import classification_report, confusion_matrix
+# matrix = confusion_matrix(y_test_list, y_pred_list)
+# report = classification_report(y_test_list, y_pred_list)
+
+# import numpy as np
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+# from sklearn.metrics import confusion_matrix
+
+
+
+# def cm_analysis(y_true, y_pred, labels, ymap=None, figsize=(10,10)):
+#     """
+#     Generate matrix plot of confusion matrix with pretty annotations.
+#     The plot image is saved to disk.
+#     args: 
+#       y_true:    true label of the data, with shape (nsamples,)
+#       y_pred:    prediction of the data, with shape (nsamples,)
+#       filename:  filename of figure file to save
+#       labels:    string array, name the order of class labels in the confusion matrix.
+#                  use `clf.classes_` if using scikit-learn models.
+#                  with shape (nclass,).
+#       ymap:      dict: any -> string, length == nclass.
+#                  if not None, map the labels & ys to more understandable strings.
+#                  Caution: original y_true, y_pred and labels must align.
+#       figsize:   the size of the figure plotted.
+#     """
+#     if ymap is not None:
+#         y_pred = [ymap[yi] for yi in y_pred]
+#         y_true = [ymap[yi] for yi in y_true]
+#         labels = [ymap[yi] for yi in labels]
+#     cm = confusion_matrix(y_true, y_pred, labels=labels)
+#     cm_sum = np.sum(cm, axis=1, keepdims=True)
+#     cm_perc = cm / cm_sum.astype(float) * 100
+#     annot = np.empty_like(cm).astype(str)
+#     nrows, ncols = cm.shape
+#     for i in range(nrows):
+#         for j in range(ncols):
+#             c = cm[i, j]
+#             p = cm_perc[i, j]
+#             if i == j:
+#                 s = cm_sum[i]
+#                 annot[i, j] = '%.1f%%\n%d/%d' % (p, c, s)
+#             elif c == 0:
+#                 annot[i, j] = ''
+#             else:
+#                 annot[i, j] = '%.1f%%\n%d' % (p, c)
+#     cm = pd.DataFrame(cm, index=[rev_index[i] for i in rev_index], columns=[rev_index[i] for i in rev_index])
+#     cm.index.name = 'Actual'
+#     cm.columns.name = 'Predicted'
+#     fig, ax = plt.subplots(figsize=figsize)
+#     sns.heatmap(cm, annot=annot, fmt='', ax=ax, cmap='rocket_r')
+#     #plt.savefig(filename)
+#     plt.savefig('confusion_matrix_CXR_Covid-19_{}e_{}_{}_{}.png'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS))
+#     plt.savefig('confusion_matrix_CXR_Covid-19_{}e_{}_{}_{}.eps'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS))
+#     #plt.show()
+
+# cm_analysis(y_test_list, y_pred_list, [i for i in rev_index] , ymap=None, figsize=(10,10))
+
+# with open('report_CXR_Covid-19_{}e_{}_{}_{}.txt'.format(EPOCHS, MODEL_NAME,IMG_SIZE,OUTPUT_LAYERS), 'w') as f:
+#     sys.stdout = f # Change the standard output to the file we created.
+#     print(report)
+#     #sys.stdout = original_stdout # Reset the standard output to its original value
