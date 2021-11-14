@@ -51,3 +51,25 @@ Best: 50 epoch with whole data - Training
 InceptionResNetV2: done
 InceptionV3: gpu3
 ```
+
+# If you find this work useful, please consider citing
+
+## Our paper
+
+```
+
+```
+
+## For Dataset
+
+```
+@misc{CovidGrandChallenge2021,
+  author = {Akhloufi, Moulay A. and Chetoui, Mohamed},
+  title = {{Chest XR COVID-19 detection}},  
+  howpublished = {\url{https://cxr-covid19.grand-challenge.org/}},
+  month = {August},
+  year = {2021},
+  note = {Online; accessed September 2021},
+  }
+```
+
