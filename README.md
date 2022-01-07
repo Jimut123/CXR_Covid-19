@@ -1,18 +1,21 @@
 # Chest X-Ray COVID-19 Detection
 ***
-## Work presented at the [Ethics and Explainability for Responsible Data Science (EE-RDS 2021) Conference](https://www.uj.ac.za/event/ethics-and-explainability-for-responsible-data-science-ee-rds/)
 
-Labels used
+## Work presented at the [Ethics and Explainability for Responsible Data Science (EE-RDS) Conference 2021](https://www.uj.ac.za/event/ethics-and-explainability-for-responsible-data-science-ee-rds/).
+***
+
+
+## Download related models and datasets
+
+https://drive.google.com/drive/u/2/folders/1Pf9FyzaiTqF3HkJ6nR_UHtefVKGc5gcZ
+
+
+Note: (While using the model, use these labels)
 
 ```
 index = {'normal': 0, 'covid': 1,  'pneumonia': 2}
 rev_index = {0: 'normal',1: 'covid', 2: 'pneumonia'}
 ```
-
-## Related Models and Datasets
-
-https://drive.google.com/drive/u/2/folders/1Pf9FyzaiTqF3HkJ6nR_UHtefVKGc5gcZ
-
 
 ## Acknowledgements
 
