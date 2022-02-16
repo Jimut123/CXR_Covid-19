@@ -1,3 +1,0 @@
-Fold no :: 2
- Dist Hist :: {'pneumonia': 3990, 'covid': 5945, 'normal': 6107}
-

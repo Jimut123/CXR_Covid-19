@@ -1,9 +1,0 @@
-test_set/
-test.zip
-COVID-19_Radiography_Dataset/
-*.h5
-*.zip
-logs
-model_checkpoint
-train
-validation
