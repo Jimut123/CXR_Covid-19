@@ -17,6 +17,14 @@ index = {'normal': 0, 'covid': 1,  'pneumonia': 2}
 rev_index = {0: 'normal',1: 'covid', 2: 'pneumonia'}
 ```
 
+## Some relevant stuffs from paper
+
+<center>
+  <img src="https://raw.githubusercontent.com/Jimut123/CXR_Covid-19/main/assets/ablation.png">
+  <img src="https://raw.githubusercontent.com/Jimut123/CXR_Covid-19/main/assets/tables.png">
+  <img src="https://raw.githubusercontent.com/Jimut123/CXR_Covid-19/main/assets/vizs.png">
+</center>
+
 ## Acknowledgements
 
 The authors are thankful to **Moulay Akhloufi** for sharing the datasets.
