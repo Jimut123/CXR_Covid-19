@@ -28,7 +28,16 @@ The authors are also grateful to **Swathy Prabhu Mj**, Ramakrishna Mission Vivek
 ### Our paper
 
 ```
-
+@INPROCEEDINGS{9708580,  
+  author={Pal, Jimut Bahan and Paul, Nilayan},  
+  booktitle={2021 Ethics and Explainability for Responsible Data Science (EE-RDS)},   
+  title={Classifying Chest X-Ray COVID-19 images via Transfer Learning},   
+  year={2021},  
+  volume={},  
+  number={},  
+  pages={1-8},  
+  doi={10.1109/EE-RDS53766.2021.9708580}
+  }
 ```
 
 ### For Dataset
