@@ -4,6 +4,7 @@
 ## Work presented at the [Ethics and Explainability for Responsible Data Science (EE-RDS) Conference 2021](https://www.uj.ac.za/event/ethics-and-explainability-for-responsible-data-science-ee-rds/).
 ***
 
+#### [[You-tube recording](https://www.youtube.com/watch?v=2sWjM-8xXfk)]
 
 ## Download related models and datasets
 
