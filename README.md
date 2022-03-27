@@ -6,6 +6,12 @@
 
 #### [[ Video recording of presentation](https://www.youtube.com/watch?v=27ixHn6SP_4)]  [[Project Page](https://jimut123.github.io/publications.html)]
 
+## Abstract
+
+
+The internal behavior of Deep Neural Network architectures can be difficult to interpret. Certain architectures achieve impressive feats in a particular dataset while failing to show comparable performance in other datasets. Developing an architecture that performs well on a dataset can be a time-consuming affair and computationally intensive process. This study explains the effect of transfer learning by fine-tuning already available state-of-the-art architectures in different datasets and using them to classify Chest X-Ray images with high accuracy. Using transfer learning helps the model learn problem-specific features in a short period. It further shows that different models perform differently in a particular setting for a dataset. Ablation studies show that a combination of smaller structures that gives an overall better result may not give the best result in the combined model. In addition, the “belief” of the model for selecting a particular class is visualized in this study.
+
+
 ## Download related models and datasets
 
 https://drive.google.com/drive/u/2/folders/1Pf9FyzaiTqF3HkJ6nR_UHtefVKGc5gcZ
