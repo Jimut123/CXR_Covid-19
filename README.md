@@ -4,6 +4,8 @@
 ## Work presented at the [Ethics and Explainability for Responsible Data Science (EE-RDS) Conference 2021](https://www.uj.ac.za/event/ethics-and-explainability-for-responsible-data-science-ee-rds/).
 ***
 
+[J. B. Pal and N. Paul, "Classifying Chest X-Ray COVID-19 images via Transfer Learning," 2021 Ethics and Explainability for Responsible Data Science (EE-RDS), 2021, pp. 1-8, doi: 10.1109/EE-RDS53766.2021.9708580.](https://ieeexplore.ieee.org/document/9708580)
+
 #### [[ Video recording of presentation](https://www.youtube.com/watch?v=27ixHn6SP_4) ] [ [Slides](https://jimut123.github.io/publications/CXR_19/CXR_COVID_19_slide.pdf) ]
 
 ## Abstract
