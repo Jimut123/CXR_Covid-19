@@ -16,7 +16,7 @@ The internal behavior of Deep Neural Network architectures can be difficult to i
 
 ## Download related models and datasets
 
-https://drive.google.com/drive/u/2/folders/1Pf9FyzaiTqF3HkJ6nR_UHtefVKGc5gcZ
+https://figshare.com/articles/dataset/CXR_Challenge_QUBIQ_21_COVID19_Perc_Estimation/21225287
 
 
 Note: (While using the model, use these labels)
